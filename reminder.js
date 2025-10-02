@@ -68,7 +68,7 @@ const checkBirthdays= async()=>{
 
 
 //cron-job--Every 7am of every day
-schedule.scheduleJob(* * * * *, ()=>{
+schedule.scheduleJob(0 7 * * *, ()=>{
     console.log("cron job running at 7am")
       checkBirthdays()
 })
