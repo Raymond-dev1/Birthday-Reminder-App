@@ -18,13 +18,14 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 
 
-app.get('/', (req, res)=>{
+app.get('/check', (req, res)=>{
     res.send('Reminder active')
 })
- app.get('/input',(req,res)=>{
+
+ app.get('/',(req,res)=>{
     res.sendFile(__dirname + '/public/register.html');
  })
- 
+
 
 app.get('/health', (req, res) => {
   res.json({ 
