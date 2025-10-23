@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev":"nodemon app.js",
+    "start":"node app.js",
+    "cron":"node testCron.js"
   },
   "keywords": [],
   "author": "",
@@ -14,9 +16,6 @@
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "http": "^0.0.1-security",
-    "mongoose": "^8.18.3",
-    "node-schedule": "^2.1.1",
-    "nodemailer": "^7.0.6",
-    "nodemon": "^3.1.10"
+    "mongoose": "^8.18.3"
   }
 }

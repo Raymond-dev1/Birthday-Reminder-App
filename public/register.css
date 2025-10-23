@@ -1,0 +1,111 @@
+.bbh-sans-hegarty-regular {
+  font-family: "BBH Sans Hegarty", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+body{
+    background-color: white;
+    color: black;
+}
+.img-container{
+    background-color: blue;
+    z-index: -1;
+}
+img{
+    width: 50%;
+  height: 100%;
+    position: absolute;
+    border-radius: 12px;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: -1; 
+    object-fit: cover;
+    object-position: left;
+}
+.register-section{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-bottom: 20px;
+    /* min-height :100vh; */
+}
+h1{
+    color:#000000;
+    width:30%;
+    position: relative;
+    bottom:4rem;
+    left: 15rem;
+    font-size: large;
+    font-weight: bolder;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+     justify-self: center;
+    height: 20rem;
+    width:30%;
+  position: relative;
+  top:8rem;
+  right:7rem;
+    padding: 20px;
+    border-radius: 10px;
+    /* background-color: #8f0909; */
+}
+input{
+    border-radius: 8px;
+    border: 1px solid grey;
+    height:2rem;
+    text-align: left;
+    padding: 7px;
+}
+button{
+    border-radius: 8px;
+    border: none;
+    height: 2.5rem;
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #1f78ec;
+    color: black;
+}
+
+
+/* Mobile styles */
+@media screen and (max-width: 480px) {
+    img{
+        width: 100%;
+        height: 30%;
+        border-radius: 5px;
+    }
+    
+    h1{
+        position: relative;
+        right:20rem;
+        top:2rem;
+        width: 90%;
+        font-size: 1.2rem;
+        /* margin: 15px auto; */
+    }
+    
+    form{
+        margin-top:12rem;
+        width: 90%;
+        padding: 15px;
+        height: auto;
+        gap: 12px;
+    }
+    
+    input{
+        height: 2.5rem;
+        font-size: 16px; 
+    }
+    
+    button{
+        height: 3rem;
+    }
+}

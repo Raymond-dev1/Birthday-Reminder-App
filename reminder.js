@@ -1,74 +1,90 @@
-const schedule = require('node-schedule')
-const User = require('./user.models')
-const nodemailer = require("nodemailer");
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    type: "OAuth2",
-    user: "iziogbaraymond72@gmail.com",
-    pass:process.env.GOOGLE_PASSWORD
-  },
-});
+const User = require("./user.models");
+const { transporter } = require("./config/mailConfig");
+
 
 //BIRTHDAY GREETINGS SETUP
-const sendBirthdayGreetings=async(recipientEmail, recipientName)=>{
+const birthdayGreetings = async (recipientEmail, recipientName) => {
+  const results = [];
+  const message = {
+    from: "iziogbaraymond72@gmail.com",
+    to: recipientEmail,
+    subject: `Happy Birthday ${recipientName}!`,
+    text: `Dear ${recipientName},\n\ wishing you a wonderful birthday, Blessings for the year ahead and More Wins \n\  Best wishes, \nRaymond `,
+  };
 
-    const message ={
-        from: "iziogbaraymond72@gmail.com",
-        to: recipientEmail, 
-        subject: `Happy Birthday ${recipientName}!`
-        text:`Dear ${recipientName},\n\ wishing you a wonderful birthday \n\  Best wishes \n\ Raymond `,
-    }
+  try {
+    const info = await transporter.sendMail(message);
+    console.log(`Email sent to ${recipientName}`, info.response);
 
-    try{
-        const info=await transport.sendMail(message)
-        console.log(`Email sent to ${recipientName}`, info.response)
-        return info :
-    }catch(error){
-        console.error(`Failed to send mail to ${recipientName}`, error)
-        throw error
-    }
+    results.push(info);
+    return {
+      status: 200,
+      success: true,
+      message: "Birthday Greetings Sent Successfully",
+      results,
+    };
+  } catch (error) {
+    console.error(`Failed to send mail to ${recipientName}`, error);
+    throw error;
+  }
 };
 
-
 //DB BIRTHDAY CHECK
-const checkBirthdays= async()=>{
+const sendBirthdayGreetings = async () => {
+  try {
+    const today = new Date();
+    const currentMonth = today.getMonth() + 1;
+    const currentDay = today.getDate();
 
-   const today = new Date();
-   const currentMonth =today.getMonth() +1;
-   const currentDay = today.getDate();
-
-//Main DB check
-    const usersWIthBirthday = await User.find({
-        $expr:{
-            $and:[
-                {$eq: [{ $month: "$dob"},  currentMonth] },
-                {$eq: [{ $dayOfMonth: "$dob "}, currentDay] }
-            ]
-        }
-})
+    //Main DB check
+    const usersWithBirthday = await User.find({
+      $expr: {
+        $and: [
+          { $eq: [{ $month: "$dob" }, currentMonth] },
+          { $eq: [{ $dayOfMonth: "$dob"}, currentDay] },
+        ],
+      },
+    });
     if (usersWithBirthday.length === 0) {
-      console.log('No birthdays today');
+      console.log("No birthdays today");
       return;
     }
 
     //extracts the email & username each
-    for(const user of usersWIthBirthday){
-        const recipientEmail= user.email;
-        const recipientName=user.username;
+    for (const user of usersWithBirthday) {
+      const recipientEmail = user.email;
+      const recipientName = user.username;
 
-    await sendBirthdayGreetings(recipientEmail, recipientName);
+      await birthdayGreetings(recipientEmail, recipientName);
+      console.log("birthday greetings sent");
 
-    console.log(`Email sent to ${recipientEmail}`)
+      await new Promise((resolve) => setTimeout(resolve, 1000)); //1 second delay
+      console.log(`Email sent to ${recipientEmail}, ${recipientName}`);
     }
+  } catch (error) {
+    console.error("error sending birthday greetings", error);
+    return { status: 500, success: false, message: "internal server error" };
+  }
+};
+
+
+// console.log("📅 Birthday scheduler started - running at every 2mins");
+// console.log("CTRL + C to stop the process");
+
+// cron-job--Every 7am of every day
+// schedule.scheduleJob('0, 7 *  * *',async ()=>{
+//     console.log("cron job running at 7am")
+//      await sendBirthdayGreetings();
+//       console.log('Birthday greetings sent');
+// })
+
+
+module.exports =  {
+     sendBirthdayGreetings
 }
 
 
 
 
-//cron-job--Every 7am of every day
-schedule.scheduleJob(0 7 * * *, ()=>{
-    console.log("cron job running at 7am")
-      checkBirthdays()
-})
+

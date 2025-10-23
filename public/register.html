@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/chat.css"/>
-    <script src="/chat.js" defer></script>
+    <link rel="stylesheet" href="register.css"/>
+    <script src="register.js" defer></script>
     <title>BIRTHDAY REMINDER APP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Hegarty&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="img-container">
+        <img src="./assets/images/blue-baloons.jpg" alt="birthday image">
+    </div>
     <div class="register-section">
+        <h1>Register today to get wishes on your birthday!</h1>
         <form id="form">
-            <input id="username" type="text" placeholder="Enter your username">
-            <input id="email" type="email" placeholder="Enter your email">
-            <input id="dob"type="date"placeholder="01/aug/05">
-            <button id="submit" type="button">Register<button>
+            <label>Username</label>
+            <input  type="text" id= "username" placeholder="Enter your username">
+            <label>Email</label>
+            <input type="email"  id="email" placeholder="Your Email">
+            <label>DOB</label>
+            <input type="date" id="dob"placeholder="01/aug/05">
+            <button id="submit" type="submit">Register Birthdate</button>
         </form>
     </div>
 </body>
