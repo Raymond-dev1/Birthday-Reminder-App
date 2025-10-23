@@ -24,6 +24,15 @@ app.get('/', (req, res)=>{
  app.get('/input',(req,res)=>{
     res.sendFile(__dirname + '/public/register.html');
  })
+ 
+
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    timestamp: new Date(),
+    uptime: process.uptime()
+  });
+});
 
 
 app.use('/api/v1/users' ,userRoutes)
