@@ -4,18 +4,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon app.js",
-    "start":"node app.js",
-    "cron":"node testCron.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "cron": "node testCron.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "http": "^0.0.1-security",
-    "mongoose": "^8.18.3"
+    "mongoose": "^8.18.3",
+    "nodemailer": "^7.0.10"
   }
 }
