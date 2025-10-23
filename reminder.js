@@ -14,6 +14,15 @@ const birthdayGreetings = async (recipientEmail, recipientName) => {
   };
 
   try {
+   await transporter
+  .verify()
+  .then(() => {
+    console.log("Email transporter is ready to send messages");
+  })
+  .catch((error) => {
+    console.log("error in configuring transporter", error);
+  });
+  
     const info = await transporter.sendMail(message);
     console.log(`Email sent to ${recipientName}`, info.response);
 
