@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
     "start": "node app.js",
-    "cron": "node testCron.js"
+    "cron": "node tests/testCron.js"
   },
   "keywords": [],
   "author": "",

@@ -3,6 +3,7 @@ const { sendEmailTest } = require("./testReminder");
 const schedule = require("node-schedule");
 require("dotenv").config();
 
+//NPM RUN CRON --Run testing
 const test = async () => {
     try{
   await mongoose.connect(process.env.MONGO_URI);{

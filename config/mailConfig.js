@@ -1,14 +1,6 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-// const transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   port:process.env.HOST,
-//   auth: {
-//     user: "iziogbaraymond72@gmail.com",
-//     pass:process.env.GOOGLE_PASSWORD
-//   },
-// });
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -23,14 +15,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-transporter
-  .verify()
-  .then(() => {
-    console.log("Email transporter is ready to send messages");
-  })
-  .catch((error) => {
-    console.log("error in configuring transporter", error);
-  });
 
 // //TESTING
 // const Ttransporter = nodemailer.createTransport({
@@ -53,5 +37,4 @@ transporter
 
 module.exports = {
   transporter,
-//   Ttransporter,
 };
