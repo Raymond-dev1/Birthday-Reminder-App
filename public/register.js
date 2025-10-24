@@ -50,6 +50,8 @@ const registerUser = async () => {
 
     if (!data.success) {
       alert(`Registration failed: ${data.message}`);
+      submitButton.disabled = false;
+      submitButton.textContent = "Register Birthday";
       return;
     } else {
       alert("Registration successful!");
