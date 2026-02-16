@@ -2,13 +2,20 @@
 
 An automated email notification system that sends personalized birthday greetings to users. Built with Node.js and MongoDB, this app runs a daily cron job to check for birthdays and deliver timely email celebrations.
 
+
+# Project Purpose
+
+This project was built to explore real-world applications of cron-jobs in Node.js .
+- Query databases on a schedule [7am daily] . 
+- Fetches celebrating user(s).
+- Send email greeting(s) programmatically. 
+
 # Features
 
 - Automatic daily birthday checks 
 - Configurable cron job scheduling
 - MongoDB integration for user data storage
 - Simple and Lightweight Express server
-
 
 # Technologies 
 
@@ -48,11 +55,3 @@ The app expects user models with the following structure :
 1. The cron job automatically checks for birthdays daily at the scheduled time
 2. Users with matching birthdays receive personalized email greetings
 3. Check the console logs for execution confirmations and any errors
-
-# Project Purpose
-
-This project was built to explore real-world applications of cron-jobs in Node.js .
-- Query databases on a schedule [7am daily] . 
-- Fetches celebrating user(s).
-- Send email greeting(s) programmatically. 
-
